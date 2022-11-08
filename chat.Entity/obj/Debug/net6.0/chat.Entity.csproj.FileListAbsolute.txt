@@ -1,0 +1,14 @@
+G:\chat\chat.Entity\bin\Debug\net6.0\chat.Entity.deps.json
+G:\chat\chat.Entity\bin\Debug\net6.0\chat.Entity.runtimeconfig.json
+G:\chat\chat.Entity\bin\Debug\net6.0\chat.Entity.dll
+G:\chat\chat.Entity\bin\Debug\net6.0\chat.Entity.pdb
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.csproj.AssemblyReference.cache
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.GeneratedMSBuildEditorConfig.editorconfig
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.AssemblyInfoInputs.cache
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.AssemblyInfo.cs
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.csproj.CoreCompileInputs.cache
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.dll
+G:\chat\chat.Entity\obj\Debug\net6.0\refint\chat.Entity.dll
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.pdb
+G:\chat\chat.Entity\obj\Debug\net6.0\chat.Entity.genruntimeconfig.cache
+G:\chat\chat.Entity\obj\Debug\net6.0\ref\chat.Entity.dll

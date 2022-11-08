@@ -1,13 +1,26 @@
+using chat.Repository;
 using chat.WebAPI.AppConfiguration.ApplicationExtensions;
 using chat.WebAPI.AppConfiguration.ServicesExtensions;
+using chat.Entity;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+
+
+var configuration = new ConfigurationBuilder()
+.AddJsonFile("appsettings.json", optional: false)
+.Build();  
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddSerilogConfiguration(); //Add serilog
+builder.Services.AddDbContextConfiguration(configuration);
 builder.Services.AddVersioningConfiguration(); //add api versioning
 builder.Services.AddControllers();
 builder.Services.AddSwaggerConfiguration(); //add swagger configuration
+
+
+builder.Services.AddScoped<DbContext, Context>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 

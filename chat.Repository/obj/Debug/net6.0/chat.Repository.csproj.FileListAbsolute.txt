@@ -1,0 +1,15 @@
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Repository.deps.json
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Repository.dll
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Repository.pdb
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Entity.dll
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Entity.pdb
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.csproj.AssemblyReference.cache
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.GeneratedMSBuildEditorConfig.editorconfig
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.AssemblyInfoInputs.cache
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.AssemblyInfo.cs
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.csproj.CoreCompileInputs.cache
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.csproj.CopyComplete
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.dll
+G:\chat\chat.Repository\obj\Debug\net6.0\refint\chat.Repository.dll
+G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.pdb
+G:\chat\chat.Repository\obj\Debug\net6.0\ref\chat.Repository.dll

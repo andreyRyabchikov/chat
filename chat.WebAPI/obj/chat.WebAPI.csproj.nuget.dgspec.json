@@ -85,14 +85,14 @@
         }
       }
     },
-    "G:\\chat\\chat.Repository\\chat.Repository.csproj": {
+    "g:\\chat\\chat.Repository\\chat.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\chat\\chat.Repository\\chat.Repository.csproj",
+        "projectUniqueName": "g:\\chat\\chat.Repository\\chat.Repository.csproj",
         "projectName": "chat.Repository",
-        "projectPath": "G:\\chat\\chat.Repository\\chat.Repository.csproj",
+        "projectPath": "g:\\chat\\chat.Repository\\chat.Repository.csproj",
         "packagesPath": "C:\\Users\\андрей\\.nuget\\packages\\",
-        "outputPath": "G:\\chat\\chat.Repository\\obj\\",
+        "outputPath": "g:\\chat\\chat.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\андрей\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -181,8 +181,8 @@
               "G:\\chat\\chat.Entity\\chat.Entity.csproj": {
                 "projectPath": "G:\\chat\\chat.Entity\\chat.Entity.csproj"
               },
-              "G:\\chat\\chat.Repository\\chat.Repository.csproj": {
-                "projectPath": "G:\\chat\\chat.Repository\\chat.Repository.csproj"
+              "g:\\chat\\chat.Repository\\chat.Repository.csproj": {
+                "projectPath": "g:\\chat\\chat.Repository\\chat.Repository.csproj"
               }
             }
           }

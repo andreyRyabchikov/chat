@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vh4J/HOdI2Q9G6bkO8QJsnRIQ0FeZxt/H8Zr+2T2KGlZpNjEncUjFvs6zNYcT7VdtijkRMZBlTYykFXp3ABMfQ==",
+  "dgSpecHash": "rTcnHOW5i13hxAbVTb28VNSNMv2i1fREZSQJHogag079CFjLxLJGEh64t8rsfkicsNlUekOAvMulEyis0g83BA==",
   "success": true,
-  "projectFilePath": "g:\\chat\\chat.Repository\\chat.Repository.csproj",
+  "projectFilePath": "G:\\chat\\chat.Repository\\chat.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\андрей\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\андрей\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

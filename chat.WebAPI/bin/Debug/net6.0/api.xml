@@ -4,27 +4,16 @@
         <name>chat.WebAPI</name>
     </assembly>
     <members>
-        <member name="T:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions">
-            <summary>
-            Application builder extensions
-            </summary>
-        </member>
-        <member name="M:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseSerilogConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            Use serilog configuration
-            </summary>
-            <param name="app"></param>
-        </member>
-        <member name="M:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseSwaggerConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            Use swagger configuration
-            </summary>
-            <param name="app"></param>
-        </member>
         <member name="T:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions">
             <summary>
             Services extensions
             </summary>
+        </member>
+        <member name="M:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddMapperConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add serilog configuration
+            </summary>
+            <param name="builder"></param>
         </member>
         <member name="M:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddDbContextConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
@@ -50,39 +39,208 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="T:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions">
+            <summary>
+            Application builder extensions
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseSerilogConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use serilog configuration
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseSwaggerConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use swagger configuration
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:chat.WebAPI.Controllers.BlackListController">
+            <summary>
+            Doctors endpoints
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.BlackListController.#ctor(chat.Services.Abstract.IBlackListService,AutoMapper.IMapper)">
+            <summary>
+            Doctors controller
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.BlackListController.GetBlackLists(System.Int32,System.Int32)">
+            <summary>
+            Get BlackLists by pages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.BlackListController.UpdateBlackList(System.Guid,chat.WebAPI.Models.BlackListResponse)">
+            <summary>
+            Update BlackList
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.BlackListController.DeleteBlackList(System.Guid)">
+            <summary>
+            Delete BlackList
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.BlackListController.GetBlackList(System.Guid)">
+            <summary>
+            Get BlackList
+            </summary>
+        </member>
+        <member name="T:chat.WebAPI.Controllers.ChatMembersController">
+            <summary>
+            Doctors endpoints
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatMembersController.#ctor(chat.Services.Abstract.IChatMemberService,AutoMapper.IMapper)">
+            <summary>
+            Doctors controller
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatMembersController.GetChatMembers(System.Int32,System.Int32)">
+            <summary>
+            Get ChatMembers by pages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatMembersController.UpdateChatMember(System.Guid,chat.WebAPI.Models.ChatMemberResponse)">
+            <summary>
+            Update ChatMember
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatMembersController.DeleteChatMember(System.Guid)">
+            <summary>
+            Delete ChatMember
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatMembersController.GetChatMember(System.Guid)">
+            <summary>
+            Get ChatMember
+            </summary>
+        </member>
+        <member name="T:chat.WebAPI.Controllers.ChatsController">
+            <summary>
+            Doctors endpoints
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatsController.#ctor(chat.Services.Abstract.IChatService,AutoMapper.IMapper)">
+            <summary>
+            Doctors controller
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatsController.GetChats(System.Int32,System.Int32)">
+            <summary>
+            Get Chats by pages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatsController.UpdateChat(System.Guid,chat.WebAPI.Models.UpdateChatRequest)">
+            <summary>
+            Update Chat
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatsController.DeleteChat(System.Guid)">
+            <summary>
+            Delete Chat
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ChatsController.GetChat(System.Guid)">
+            <summary>
+            Get Chat
+            </summary>
+        </member>
+        <member name="T:chat.WebAPI.Controllers.ContactController">
+            <summary>
+            Doctors endpoints
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ContactController.#ctor(chat.Services.Abstract.IContactService,AutoMapper.IMapper)">
+            <summary>
+            Doctors controller
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ContactController.GetContacts(System.Int32,System.Int32)">
+            <summary>
+            Get Contacts by pages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ContactController.UpdateContact(System.Guid,chat.WebAPI.Models.ContactResponse)">
+            <summary>
+            Update Contact
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ContactController.DeleteContact(System.Guid)">
+            <summary>
+            Delete Contact
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.ContactController.GetContact(System.Guid)">
+            <summary>
+            Get Contact
+            </summary>
+        </member>
+        <member name="T:chat.WebAPI.Controllers.MessagesController">
+            <summary>
+            Doctors endpoints
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.MessagesController.#ctor(chat.Services.Abstract.IMessageService,AutoMapper.IMapper)">
+            <summary>
+            Doctors controller
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.MessagesController.GetMessages(System.Int32,System.Int32)">
+            <summary>
+            Get Messages by pages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.MessagesController.UpdateMessage(System.Guid,chat.WebAPI.Models.UpdateMessageRequest)">
+            <summary>
+            Update Message
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.MessagesController.DeleteMessage(System.Guid)">
+            <summary>
+            Delete Message
+            </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.MessagesController.GetMessage(System.Guid)">
+            <summary>
+            Get Message
+            </summary>
+        </member>
         <member name="T:chat.WebAPI.Controllers.UsersController">
             <summary>
             Doctors endpoints
             </summary>
         </member>
-        <member name="M:chat.WebAPI.Controllers.UsersController.#ctor(chat.Repository.IRepository{chat.Entity.Models.User})">
+        <member name="M:chat.WebAPI.Controllers.UsersController.#ctor(chat.Services.Abstract.IUserService,AutoMapper.IMapper)">
             <summary>
-            Users controller
+            Doctors controller
             </summary>
         </member>
-        <member name="M:chat.WebAPI.Controllers.UsersController.GetUsers">
+        <member name="M:chat.WebAPI.Controllers.UsersController.GetUsers(System.Int32,System.Int32)">
             <summary>
-            Get Users
+            Get users by pages
             </summary>
             <returns></returns>
         </member>
-        <member name="M:chat.WebAPI.Controllers.UsersController.DeleteUsers(chat.Entity.Models.User)">
+        <member name="M:chat.WebAPI.Controllers.UsersController.UpdateUser(System.Guid,chat.WebAPI.Models.UpdateUserRequest)">
             <summary>
-            Delete users
+            Update user
             </summary>
-            <param name="user"></param>
         </member>
-        <member name="M:chat.WebAPI.Controllers.UsersController.PostUsers(chat.Entity.Models.User)">
+        <member name="M:chat.WebAPI.Controllers.UsersController.DeleteUser(System.Guid)">
             <summary>
-            Post users
+            Delete user
             </summary>
-            <param name="user"></param>
         </member>
-        <member name="M:chat.WebAPI.Controllers.UsersController.Updatesers(chat.Entity.Models.User)">
+        <member name="M:chat.WebAPI.Controllers.UsersController.GetUser(System.Guid)">
             <summary>
-            Update users
+            Get user
             </summary>
-            <param name="user"></param>
         </member>
     </members>
 </doc>

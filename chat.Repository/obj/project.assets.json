@@ -7107,11 +7107,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "g:\\chat\\chat.Repository\\chat.Repository.csproj",
+      "projectUniqueName": "G:\\chat\\chat.Repository\\chat.Repository.csproj",
       "projectName": "chat.Repository",
-      "projectPath": "g:\\chat\\chat.Repository\\chat.Repository.csproj",
+      "projectPath": "G:\\chat\\chat.Repository\\chat.Repository.csproj",
       "packagesPath": "C:\\Users\\андрей\\.nuget\\packages\\",
-      "outputPath": "g:\\chat\\chat.Repository\\obj\\",
+      "outputPath": "G:\\chat\\chat.Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\андрей\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7169,7 +7169,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

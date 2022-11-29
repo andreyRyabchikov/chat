@@ -11,4 +11,6 @@ public interface IChatMemberService
     void DeleteChatMember(Guid id);
 
     PageModel<ChatMemberModel> GetChatMembers(int limit = 20, int offset = 0);
+   ChatMemberModel AddChatMember(ChatMemberModel ChatMemberModel);
+    
 }

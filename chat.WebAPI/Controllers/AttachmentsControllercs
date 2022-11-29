@@ -13,37 +13,37 @@ namespace chat.WebAPI.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class AttachmentsController : ControllerBase
     {
-        private readonly IUserService userService;
+        private readonly IAttachmentService AttachmentService;
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Doctors controller
+        /// Attachment controller
         /// </summary>
-        public UsersController(IUserService userService, IMapper mapper)
+        public AttachmentsController(IAttachmentService AttachmentService, IMapper mapper)
         {
-            this.userService = userService;
+            this.AttachmentService = AttachmentService;
             this.mapper = mapper;
         }
 
         /// <summary>
-        /// Get users by pages
+        /// Get Attachments by pages
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetUsers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
+        public IActionResult GetAttachments([FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
-            var pageModel = userService.GetUsers(limit, offset);
-            return Ok(mapper.Map<PageResponse<UserResponse>>(pageModel));
+            var pageModel = AttachmentService.GetAttachments(limit, offset);
+            return Ok(mapper.Map<PageResponse<AttachmentResponse>>(pageModel));
         }
 
         /// <summary>
-        /// Update user
+        /// Update Attachment
         /// </summary>
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateUser([FromRoute] Guid id, [FromBody] UpdateUserRequest model)
+        public IActionResult UpdateAttachment([FromRoute] Guid id, [FromBody] UpdateAttachmentRequest model)
         {
             var validationResult = model.Validate();
             if (!validationResult.IsValid)
@@ -52,9 +52,9 @@ namespace chat.WebAPI.Controllers
             }
             try
             {
-                var resultModel = userService.UpdateUser(id, mapper.Map<UpdateUserModel>(model));
+                var resultModel = AttachmentService.UpdateAttachment(id, mapper.Map<UpdateAttachmentModel>(model));
 
-                return Ok(mapper.Map<UserResponse>(resultModel));
+                return Ok(mapper.Map<AttachmentResponse>(resultModel));
             }
             catch (Exception ex)
             {
@@ -63,15 +63,15 @@ namespace chat.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Delete user
+        /// Delete Attachment
         /// </summary>
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteUser([FromRoute] Guid id)
+        public IActionResult DeleteAttachment([FromRoute] Guid id)
         {
             try
             {
-                userService.DeleteUser(id);
+                AttachmentService.DeleteAttachment(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -81,21 +81,32 @@ namespace chat.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Get user
+        /// Get Attachment
         /// </summary>
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetUser([FromRoute] Guid id)
+        public IActionResult GetAttachment([FromRoute] Guid id)
         {
             try
             {
-                var userModel = userService.GetUser(id);
-                return Ok(mapper.Map<UserResponse>(userModel));
+                var AttachmentModel = AttachmentService.GetAttachment(id);
+                return Ok(mapper.Map<AttachmentResponse>(AttachmentModel));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.ToString());
             }
         }
+        /// <summary>
+        /// Add Attachment
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult AddAttachment([FromBody] AttachmentModel Attachment)
+        {
+            var response = AttachmentService.AddAttachment(Attachment);
+            return Ok(response);
+        }
+
     }
 }

@@ -65,4 +65,9 @@ public class MessageService : IMessageService
         existingMessage = MessagesRepository.Save(existingMessage);
         return mapper.Map<MessageModel>(existingMessage);
     }
+     MessageModel IMessageService.AddMessage(MessageModel MessageModel)
+    {
+        MessagesRepository.Save(mapper.Map<Message>(MessageModel));
+        return MessageModel;
+    }
 }

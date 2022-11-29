@@ -65,4 +65,9 @@ public class UserService : IUserService
         existingUser = usersRepository.Save(existingUser);
         return mapper.Map<UserModel>(existingUser);
     }
+     UserModel IUserService.AddUser(UserModel UserModel)
+    {
+        usersRepository.Save(mapper.Map<User>(UserModel));
+        return UserModel;
+    }
 }

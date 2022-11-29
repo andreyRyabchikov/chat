@@ -11,4 +11,5 @@ public interface IContactService
     void DeleteContact(Guid id);
 
     PageModel<ContactModel> GetContacts(int limit = 20, int offset = 0);
+    ContactModel AddContact(ContactModel ContactModel);
 }

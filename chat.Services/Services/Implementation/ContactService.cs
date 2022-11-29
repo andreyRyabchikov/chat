@@ -65,4 +65,9 @@ public class ContactService : IContactService
         existingContact = ContactsRepository.Save(existingContact);
         return mapper.Map<ContactModel>(existingContact);
     }
+     ContactModel IContactService.AddContact(ContactModel ContactModel)
+    {
+        ContactsRepository.Save(mapper.Map<Contact>(ContactModel));
+        return ContactModel;
+    }
 }

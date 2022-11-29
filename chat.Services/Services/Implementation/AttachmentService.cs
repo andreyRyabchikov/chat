@@ -65,4 +65,9 @@ public class AttachmentService : IAttachmentService
         existingAttachment = AttachmentsRepository.Save(existingAttachment);
         return mapper.Map<AttachmentModel>(existingAttachment);
     }
+    AttachmentModel IAttachmentService.AddAttachment(AttachmentModel AttachmentModel)
+    {
+        AttachmentsRepository.Save(mapper.Map<Attachment>(AttachmentModel));
+        return AttachmentModel;
+    }
 }

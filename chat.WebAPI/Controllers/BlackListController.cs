@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace chat.WebAPI.Controllers
 {
     /// <summary>
-    /// Doctors endpoints
+    /// BlackList endpoints
     /// </summary>
     [ProducesResponseType(200)]
     [ApiVersion("1.0")]
@@ -96,6 +96,16 @@ namespace chat.WebAPI.Controllers
             {
                 return BadRequest(ex.ToString());
             }
+        }
+        /// <summary>
+        /// Add BlackList
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult AddBlackList([FromBody] BlackListModel BlackList)
+        {
+            var response = BlackListService.AddBlackList(BlackList);
+            return Ok(response);
         }
     }
 }

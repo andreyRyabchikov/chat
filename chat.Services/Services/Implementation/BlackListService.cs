@@ -65,4 +65,9 @@ public class BlackListService : IBlackListService
         existingBlackList = BlackListsRepository.Save(existingBlackList);
         return mapper.Map<BlackListModel>(existingBlackList);
     }
+    BlackListModel IBlackListService.AddBlackList(BlackListModel BlackListModel)
+    {
+        BlackListsRepository.Save(mapper.Map<BlackList>(BlackListModel));
+        return BlackListModel;
+    }
 }

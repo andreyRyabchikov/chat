@@ -11,4 +11,5 @@ public interface IMessageService
     void DeleteMessage(Guid id);
 
     PageModel<MessagePreviewModel> GetMessages(int limit = 20, int offset = 0);
+    MessageModel AddMessage(MessageModel MessageModel);
 }

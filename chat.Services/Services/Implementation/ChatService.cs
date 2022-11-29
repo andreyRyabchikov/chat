@@ -65,4 +65,9 @@ public class ChatService : IChatService
         existingChat = ChatsRepository.Save(existingChat);
         return mapper.Map<ChatModel>(existingChat);
     }
+    ChatModel IChatService.AddChat(ChatModel ChatModel)
+    {
+        ChatsRepository.Save(mapper.Map<Chat>(ChatModel));
+        return ChatModel;
+    }
 }

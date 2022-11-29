@@ -11,4 +11,5 @@ public interface IBlackListService
     void DeleteBlackList(Guid id);
 
     PageModel<BlackListModel> GetBlackLists(int limit = 20, int offset = 0);
+    BlackListModel AddBlackList(BlackListModel BlackListModel);
 }

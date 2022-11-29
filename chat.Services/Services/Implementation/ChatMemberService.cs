@@ -65,4 +65,9 @@ public class ChatMemberService : IChatMemberService
         existingChatMember = ChatMembersRepository.Save(existingChatMember);
         return mapper.Map<ChatMemberModel>(existingChatMember);
     }
+     ChatMemberModel IChatMemberService.AddChatMember(ChatMemberModel ChatMemberModel)
+    {
+        ChatMembersRepository.Save(mapper.Map<ChatMember>(ChatMemberModel));
+        return ChatMemberModel;
+    }
 }

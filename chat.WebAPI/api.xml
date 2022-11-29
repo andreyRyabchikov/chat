@@ -58,7 +58,7 @@
         </member>
         <member name="T:chat.WebAPI.Controllers.BlackListController">
             <summary>
-            Doctors endpoints
+            BlackList endpoints
             </summary>
         </member>
         <member name="M:chat.WebAPI.Controllers.BlackListController.#ctor(chat.Services.Abstract.IBlackListService,AutoMapper.IMapper)">
@@ -87,9 +87,15 @@
             Get BlackList
             </summary>
         </member>
+        <member name="M:chat.WebAPI.Controllers.BlackListController.AddBlackList(chat.Services.Models.BlackListModel)">
+            <summary>
+            Add BlackList
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:chat.WebAPI.Controllers.ChatMembersController">
             <summary>
-            Doctors endpoints
+            ChatMember endpoints
             </summary>
         </member>
         <member name="M:chat.WebAPI.Controllers.ChatMembersController.#ctor(chat.Services.Abstract.IChatMemberService,AutoMapper.IMapper)">
@@ -118,9 +124,15 @@
             Get ChatMember
             </summary>
         </member>
+        <member name="M:chat.WebAPI.Controllers.ChatMembersController.AddChatMember(chat.Services.Models.ChatMemberModel)">
+            <summary>
+            Add ChatMember
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:chat.WebAPI.Controllers.ChatsController">
             <summary>
-            Doctors endpoints
+            Chat endpoints
             </summary>
         </member>
         <member name="M:chat.WebAPI.Controllers.ChatsController.#ctor(chat.Services.Abstract.IChatService,AutoMapper.IMapper)">
@@ -149,9 +161,15 @@
             Get Chat
             </summary>
         </member>
+        <member name="M:chat.WebAPI.Controllers.ChatsController.AddChat(chat.Services.Models.ChatModel)">
+            <summary>
+            Add Chat
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:chat.WebAPI.Controllers.ContactController">
             <summary>
-            Doctors endpoints
+            Contact endpoints
             </summary>
         </member>
         <member name="M:chat.WebAPI.Controllers.ContactController.#ctor(chat.Services.Abstract.IContactService,AutoMapper.IMapper)">
@@ -180,9 +198,15 @@
             Get Contact
             </summary>
         </member>
+        <member name="M:chat.WebAPI.Controllers.ContactController.AddContact(chat.Services.Models.ContactModel)">
+            <summary>
+            Add Contact
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:chat.WebAPI.Controllers.MessagesController">
             <summary>
-            Doctors endpoints
+            Message endpoints
             </summary>
         </member>
         <member name="M:chat.WebAPI.Controllers.MessagesController.#ctor(chat.Services.Abstract.IMessageService,AutoMapper.IMapper)">
@@ -211,9 +235,15 @@
             Get Message
             </summary>
         </member>
+        <member name="M:chat.WebAPI.Controllers.MessagesController.AddMessage(chat.Services.Models.MessageModel)">
+            <summary>
+            Add Message
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:chat.WebAPI.Controllers.UsersController">
             <summary>
-            Doctors endpoints
+            User endpoints
             </summary>
         </member>
         <member name="M:chat.WebAPI.Controllers.UsersController.#ctor(chat.Services.Abstract.IUserService,AutoMapper.IMapper)">
@@ -241,6 +271,12 @@
             <summary>
             Get user
             </summary>
+        </member>
+        <member name="M:chat.WebAPI.Controllers.UsersController.AddUser(chat.Services.Models.UserModel)">
+            <summary>
+            Add User
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

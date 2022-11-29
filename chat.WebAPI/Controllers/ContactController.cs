@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace chat.WebAPI.Controllers
 {
     /// <summary>
-    /// Doctors endpoints
+    /// Contact endpoints
     /// </summary>
     [ProducesResponseType(200)]
     [ApiVersion("1.0")]
@@ -96,6 +96,16 @@ namespace chat.WebAPI.Controllers
             {
                 return BadRequest(ex.ToString());
             }
+        }
+        /// <summary>
+        /// Add Contact
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult AddContact([FromBody] ContactModel Contact)
+        {
+            var response = ContactService.AddContact(Contact);
+            return Ok(response);
         }
     }
 }

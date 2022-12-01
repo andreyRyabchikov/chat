@@ -1,4 +1,5 @@
 using chat.Services.Models;
+using chat.Entity.Models;
 
 namespace chat.Services.Abstract;
 
@@ -11,6 +12,6 @@ public interface IChatMemberService
     void DeleteChatMember(Guid id);
 
     PageModel<ChatMemberModel> GetChatMembers(int limit = 20, int offset = 0);
-   ChatMemberModel AddChatMember(ChatMemberModel ChatMemberModel);
+   ChatMember AddChatMember(ChatMemberModel ChatMemberModel);
     
 }

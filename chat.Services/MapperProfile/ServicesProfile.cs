@@ -15,13 +15,13 @@ public class ServicesProfile : Profile
 
              #region Chats
 
-       CreateMap<Chat, ChatModel>().ReverseMap();
+        CreateMap<Chat, ChatModel>().ReverseMap();
         CreateMap<Chat, ChatPreviewModel>().ReverseMap();
         #endregion
          #region ChatMembers
 
         CreateMap<ChatMember, ChatMemberModel>().ReverseMap();
-         CreateMap<ChatMember, ChatPreviewModel>().ReverseMap();
+        CreateMap<ChatMember, ChatPreviewModel>().ReverseMap();
         #endregion
          #region BlackList
 
@@ -30,11 +30,11 @@ public class ServicesProfile : Profile
          #region Attachments
 
         CreateMap<Attachment, AttachmentModel>().ReverseMap();
-         CreateMap<Attachment, AttachmentPreviewModel>().ReverseMap();
+        CreateMap<Attachment, AttachmentPreviewModel>().ReverseMap();
         #endregion
         #region Contact
 
-         CreateMap<Contact, ContactModel>().ReverseMap();
+        CreateMap<Contact, ContactModel>().ReverseMap();
         #endregion
 
         #region Messages

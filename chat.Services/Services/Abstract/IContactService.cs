@@ -1,4 +1,5 @@
 using chat.Services.Models;
+using chat.Entity.Models;
 
 namespace chat.Services.Abstract;
 
@@ -11,5 +12,5 @@ public interface IContactService
     void DeleteContact(Guid id);
 
     PageModel<ContactModel> GetContacts(int limit = 20, int offset = 0);
-    ContactModel AddContact(ContactModel ContactModel);
+    Contact AddContact(ContactModel ContactModel);
 }

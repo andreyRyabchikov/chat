@@ -1,5 +1,5 @@
 using chat.Services.Models;
-
+using chat.Entity.Models;
 namespace chat.Services.Abstract;
 
 public interface IBlackListService
@@ -11,5 +11,5 @@ public interface IBlackListService
     void DeleteBlackList(Guid id);
 
     PageModel<BlackListModel> GetBlackLists(int limit = 20, int offset = 0);
-    BlackListModel AddBlackList(BlackListModel BlackListModel);
+    BlackList AddBlackList(BlackListModel BlackListModel);
 }

@@ -9,11 +9,13 @@ namespace chat.Services.Implementation;
 public class ContactService : IContactService
 {
     private readonly IRepository<Contact> ContactsRepository;
+    private readonly IRepository<User> usersRepository;
     private readonly IMapper mapper;
-    public ContactService(IRepository<Contact> ContactsRepository, IMapper mapper)
+    public ContactService(IRepository<User> usersRepository,IRepository<Contact> ContactsRepository, IMapper mapper)
     {
         this.ContactsRepository = ContactsRepository;
         this.mapper = mapper;
+        this.usersRepository = usersRepository;
     }
 
     public void DeleteContact(Guid id)
@@ -65,9 +67,20 @@ public class ContactService : IContactService
         existingContact = ContactsRepository.Save(existingContact);
         return mapper.Map<ContactModel>(existingContact);
     }
-     ContactModel IContactService.AddContact(ContactModel ContactModel)
+     Contact IContactService.AddContact(ContactModel ContactModel)
     {
         ContactsRepository.Save(mapper.Map<Contact>(ContactModel));
-        return ContactModel;
+        Contact modelCreate = new Contact();
+        modelCreate.Id=ContactModel.Id;
+        modelCreate.CreationTime = ContactModel.CreationTime;
+        modelCreate.ModificationTime= ContactModel.ModificationTime;
+        modelCreate.AddTime = ContactModel.AddTime;
+        modelCreate.IdUser = ContactModel.IdUser;
+        modelCreate.IdUserContact = ContactModel.IdUserContact;
+        modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+        modelCreate.UserContact = usersRepository.GetAll(x => x.Id == modelCreate.IdUserContact).FirstOrDefault();
+        modelCreate.User.ThatContacts.Add(modelCreate);
+        modelCreate.UserContact.ThemContacts.Add(modelCreate);
+        return modelCreate;
     }
 }

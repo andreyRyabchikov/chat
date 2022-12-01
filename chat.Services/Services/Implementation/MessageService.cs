@@ -9,11 +9,15 @@ namespace chat.Services.Implementation;
 public class MessageService : IMessageService
 {
     private readonly IRepository<Message> MessagesRepository;
+         private readonly IRepository<User> usersRepository;
+    private readonly IRepository<Chat> ChatsRepository;
     private readonly IMapper mapper;
-    public MessageService(IRepository<Message> MessagesRepository, IMapper mapper)
+    public MessageService(IRepository<Chat> ChatsRepository,IRepository<User> usersRepository,IRepository<Message> MessagesRepository, IMapper mapper)
     {
         this.MessagesRepository = MessagesRepository;
         this.mapper = mapper;
+        this.usersRepository = usersRepository;
+        this.ChatsRepository = ChatsRepository;
     }
 
     public void DeleteMessage(Guid id)
@@ -65,9 +69,20 @@ public class MessageService : IMessageService
         existingMessage = MessagesRepository.Save(existingMessage);
         return mapper.Map<MessageModel>(existingMessage);
     }
-     MessageModel IMessageService.AddMessage(MessageModel MessageModel)
+     Message IMessageService.AddMessage(MessageModel MessageModel)
     {
         MessagesRepository.Save(mapper.Map<Message>(MessageModel));
-        return MessageModel;
+        Message modelCreate = new Message();
+        modelCreate.Id=MessageModel.Id;
+        modelCreate.CreationTime = MessageModel.CreationTime;
+        modelCreate.ModificationTime= MessageModel.ModificationTime;
+        modelCreate.IdChat = MessageModel.IdChat;
+        modelCreate.IdUser = MessageModel.IdUser;
+        modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+        modelCreate.Chat = ChatsRepository.GetAll(x => x.Id == modelCreate.IdChat).FirstOrDefault();
+        modelCreate.Chat.Messages.Add(modelCreate);
+        modelCreate.User.Messages.Add(modelCreate);
+
+        return modelCreate;
     }
 }

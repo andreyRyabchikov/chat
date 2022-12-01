@@ -1,4 +1,5 @@
 using chat.Services.Models;
+using chat.Entity.Models;
 
 namespace chat.Services.Abstract;
 

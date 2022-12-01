@@ -9,10 +9,12 @@ namespace chat.Services.Implementation;
 public class BlackListService : IBlackListService
 {
     private readonly IRepository<BlackList> BlackListsRepository;
+     private readonly IRepository<User> usersRepository;
     private readonly IMapper mapper;
-    public BlackListService(IRepository<BlackList> BlackListsRepository, IMapper mapper)
+    public BlackListService(IRepository<User> usersRepository, IRepository<BlackList> BlackListsRepository, IMapper mapper)
     {
         this.BlackListsRepository = BlackListsRepository;
+        this.usersRepository = usersRepository;
         this.mapper = mapper;
     }
 
@@ -65,9 +67,20 @@ public class BlackListService : IBlackListService
         existingBlackList = BlackListsRepository.Save(existingBlackList);
         return mapper.Map<BlackListModel>(existingBlackList);
     }
-    BlackListModel IBlackListService.AddBlackList(BlackListModel BlackListModel)
+    BlackList IBlackListService.AddBlackList(BlackListModel BlackListModel)
     {
         BlackListsRepository.Save(mapper.Map<BlackList>(BlackListModel));
-        return BlackListModel;
+        BlackList modelCreate = new BlackList();
+        modelCreate.Id=BlackListModel.Id;
+        modelCreate.CreationTime = BlackListModel.CreationTime;
+        modelCreate.ModificationTime= BlackListModel.ModificationTime;
+        modelCreate.AddTime = BlackListModel.AddTime;
+        modelCreate.IdUser = BlackListModel.IdUser;
+        modelCreate.IdUserBlocked = BlackListModel.IdUserBlocked;
+        modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+        modelCreate.UserBlocked = usersRepository.GetAll(x => x.Id == modelCreate.IdUserBlocked).FirstOrDefault();
+        modelCreate.User.ThemBanned.Add(modelCreate);
+        modelCreate.UserBlocked.ThatBanned.Add(modelCreate);
+        return modelCreate;
     }
 }

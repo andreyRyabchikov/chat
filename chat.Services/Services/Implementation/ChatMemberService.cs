@@ -9,11 +9,15 @@ namespace chat.Services.Implementation;
 public class ChatMemberService : IChatMemberService
 {
     private readonly IRepository<ChatMember> ChatMembersRepository;
+     private readonly IRepository<User> usersRepository;
+    private readonly IRepository<Chat> ChatsRepository;
     private readonly IMapper mapper;
-    public ChatMemberService(IRepository<ChatMember> ChatMembersRepository, IMapper mapper)
+    public ChatMemberService(IRepository<Chat> ChatsRepository,IRepository<User> usersRepository,IRepository<ChatMember> ChatMembersRepository, IMapper mapper)
     {
         this.ChatMembersRepository = ChatMembersRepository;
         this.mapper = mapper;
+        this.usersRepository = usersRepository;
+        this.ChatsRepository = ChatsRepository;
     }
 
     public void DeleteChatMember(Guid id)
@@ -65,9 +69,20 @@ public class ChatMemberService : IChatMemberService
         existingChatMember = ChatMembersRepository.Save(existingChatMember);
         return mapper.Map<ChatMemberModel>(existingChatMember);
     }
-     ChatMemberModel IChatMemberService.AddChatMember(ChatMemberModel ChatMemberModel)
+     ChatMember IChatMemberService.AddChatMember(ChatMemberModel ChatMemberModel)
     {
         ChatMembersRepository.Save(mapper.Map<ChatMember>(ChatMemberModel));
-        return ChatMemberModel;
+        ChatMember modelCreate = new ChatMember();
+        modelCreate.Id=ChatMemberModel.Id;
+        modelCreate.CreationTime = ChatMemberModel.CreationTime;
+        modelCreate.ModificationTime= ChatMemberModel.ModificationTime;
+        modelCreate.IdChat = ChatMemberModel.IdChat;
+        modelCreate.IdUser = ChatMemberModel.IdUser;
+        modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+        modelCreate.Chat = ChatsRepository.GetAll(x => x.Id == modelCreate.IdChat).FirstOrDefault();
+        modelCreate.Chat.ChatMembers.Add(modelCreate);
+        modelCreate.User.ChatMembers.Add(modelCreate);
+
+        return modelCreate;
     }
 }

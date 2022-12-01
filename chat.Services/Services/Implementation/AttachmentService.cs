@@ -9,10 +9,12 @@ namespace chat.Services.Implementation;
 public class AttachmentService : IAttachmentService
 {
     private readonly IRepository<Attachment> AttachmentsRepository;
+        private readonly IRepository<Message> MessagesRepository;
     private readonly IMapper mapper;
-    public AttachmentService(IRepository<Attachment> AttachmentsRepository, IMapper mapper)
+    public AttachmentService(IRepository<Attachment> AttachmentsRepository, IRepository<Message> MessagesRepository,IMapper mapper)
     {
         this.AttachmentsRepository = AttachmentsRepository;
+        this.MessagesRepository = MessagesRepository;
         this.mapper = mapper;
     }
 
@@ -65,9 +67,19 @@ public class AttachmentService : IAttachmentService
         existingAttachment = AttachmentsRepository.Save(existingAttachment);
         return mapper.Map<AttachmentModel>(existingAttachment);
     }
-    AttachmentModel IAttachmentService.AddAttachment(AttachmentModel AttachmentModel)
+    Attachment IAttachmentService.AddAttachment(AttachmentModel AttachmentModel)
     {
-        AttachmentsRepository.Save(mapper.Map<Attachment>(AttachmentModel));
-        return AttachmentModel;
+        Attachment modelCreate = new Attachment();
+        modelCreate.Id=AttachmentModel.Id;
+        modelCreate.CreationTime = AttachmentModel.CreationTime;
+        modelCreate.IdMessage=AttachmentModel.IdMessage;
+        modelCreate.ModificationTime= AttachmentModel.ModificationTime;
+        modelCreate.Name=AttachmentModel.Name;
+        modelCreate.Type=AttachmentModel.Type;
+        var Message = MessagesRepository.GetAll(x => x.Id == modelCreate.IdMessage).FirstOrDefault();
+        modelCreate.Message=Message;
+        Message.Attachments.Add(modelCreate);
+        AttachmentsRepository.Save(mapper.Map<Attachment>(modelCreate));
+        return modelCreate;
     }
 }

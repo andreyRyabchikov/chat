@@ -106,6 +106,7 @@ namespace chat.WebAPI.Controllers
         {
             var response = ChatService.AddChat(Chat);
             return Ok(response);
+            
         }
     }
 }

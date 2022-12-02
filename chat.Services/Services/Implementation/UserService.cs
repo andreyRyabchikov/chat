@@ -67,6 +67,8 @@ public class UserService : IUserService
     }
      UserModel IUserService.AddUser(UserModel UserModel)
     {
+         if (usersRepository.GetAll(x => x.Id == UserModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
         usersRepository.Save(mapper.Map<User>(UserModel));
         return UserModel;
     }

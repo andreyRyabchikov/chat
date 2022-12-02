@@ -69,7 +69,8 @@ public class BlackListService : IBlackListService
     }
     BlackList IBlackListService.AddBlackList(BlackListModel BlackListModel)
     {
-        BlackListsRepository.Save(mapper.Map<BlackList>(BlackListModel));
+        if (BlackListsRepository.GetAll(x => x.Id == BlackListModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
         BlackList modelCreate = new BlackList();
         modelCreate.Id=BlackListModel.Id;
         modelCreate.CreationTime = BlackListModel.CreationTime;
@@ -81,6 +82,7 @@ public class BlackListService : IBlackListService
         modelCreate.UserBlocked = usersRepository.GetAll(x => x.Id == modelCreate.IdUserBlocked).FirstOrDefault();
         modelCreate.User.ThemBanned.Add(modelCreate);
         modelCreate.UserBlocked.ThatBanned.Add(modelCreate);
+        BlackListsRepository.Save(mapper.Map<BlackList>(modelCreate));
         return modelCreate;
     }
 }

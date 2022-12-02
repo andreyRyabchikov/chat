@@ -69,6 +69,8 @@ public class AttachmentService : IAttachmentService
     }
     Attachment IAttachmentService.AddAttachment(AttachmentModel AttachmentModel)
     {
+        if (AttachmentsRepository.GetAll(x => x.Id == AttachmentModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
         Attachment modelCreate = new Attachment();
         modelCreate.Id=AttachmentModel.Id;
         modelCreate.CreationTime = AttachmentModel.CreationTime;

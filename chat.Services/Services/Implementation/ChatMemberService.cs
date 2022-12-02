@@ -71,7 +71,8 @@ public class ChatMemberService : IChatMemberService
     }
      ChatMember IChatMemberService.AddChatMember(ChatMemberModel ChatMemberModel)
     {
-        ChatMembersRepository.Save(mapper.Map<ChatMember>(ChatMemberModel));
+        if (ChatMembersRepository.GetAll(x => x.Id == ChatMemberModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
         ChatMember modelCreate = new ChatMember();
         modelCreate.Id=ChatMemberModel.Id;
         modelCreate.CreationTime = ChatMemberModel.CreationTime;
@@ -82,6 +83,7 @@ public class ChatMemberService : IChatMemberService
         modelCreate.Chat = ChatsRepository.GetAll(x => x.Id == modelCreate.IdChat).FirstOrDefault();
         modelCreate.Chat.ChatMembers.Add(modelCreate);
         modelCreate.User.ChatMembers.Add(modelCreate);
+        ChatMembersRepository.Save(mapper.Map<ChatMember>(modelCreate));
 
         return modelCreate;
     }

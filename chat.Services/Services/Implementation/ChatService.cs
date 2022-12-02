@@ -67,6 +67,8 @@ public class ChatService : IChatService
     }
     ChatModel IChatService.AddChat(ChatModel ChatModel)
     {
+         if (ChatsRepository.GetAll(x => x.Id == ChatModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
         ChatsRepository.Save(mapper.Map<Chat>(ChatModel));
         return ChatModel;
     }

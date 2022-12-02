@@ -69,7 +69,9 @@ public class ContactService : IContactService
     }
      Contact IContactService.AddContact(ContactModel ContactModel)
     {
-        ContactsRepository.Save(mapper.Map<Contact>(ContactModel));
+        if (ContactsRepository.GetAll(x => x.Id == ContactModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
+   
         Contact modelCreate = new Contact();
         modelCreate.Id=ContactModel.Id;
         modelCreate.CreationTime = ContactModel.CreationTime;
@@ -81,6 +83,7 @@ public class ContactService : IContactService
         modelCreate.UserContact = usersRepository.GetAll(x => x.Id == modelCreate.IdUserContact).FirstOrDefault();
         modelCreate.User.ThatContacts.Add(modelCreate);
         modelCreate.UserContact.ThemContacts.Add(modelCreate);
+        ContactsRepository.Save(mapper.Map<Contact>(modelCreate));
         return modelCreate;
     }
 }

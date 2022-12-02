@@ -71,7 +71,8 @@ public class MessageService : IMessageService
     }
      Message IMessageService.AddMessage(MessageModel MessageModel)
     {
-        MessagesRepository.Save(mapper.Map<Message>(MessageModel));
+        if (MessagesRepository.GetAll(x => x.Id == MessageModel.Id).FirstOrDefault()!=null)
+            throw new Exception("create not uniqe subject");
         Message modelCreate = new Message();
         modelCreate.Id=MessageModel.Id;
         modelCreate.CreationTime = MessageModel.CreationTime;
@@ -82,6 +83,7 @@ public class MessageService : IMessageService
         modelCreate.Chat = ChatsRepository.GetAll(x => x.Id == modelCreate.IdChat).FirstOrDefault();
         modelCreate.Chat.Messages.Add(modelCreate);
         modelCreate.User.Messages.Add(modelCreate);
+        MessagesRepository.Save(mapper.Map<Message>(modelCreate));
 
         return modelCreate;
     }

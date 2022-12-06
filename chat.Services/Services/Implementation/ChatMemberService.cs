@@ -69,7 +69,7 @@ public class ChatMemberService : IChatMemberService
         existingChatMember = ChatMembersRepository.Save(existingChatMember);
         return mapper.Map<ChatMemberModel>(existingChatMember);
     }
-     ChatMember IChatMemberService.AddChatMember(ChatMemberModel ChatMemberModel)
+     public ChatMemberModel AddChatMember(ChatMemberModel ChatMemberModel)
     {
         if (ChatMembersRepository.GetAll(x => x.Id == ChatMemberModel.Id).FirstOrDefault()!=null)
             throw new Exception("create not uniqe subject");
@@ -80,11 +80,15 @@ public class ChatMemberService : IChatMemberService
         modelCreate.IdChat = ChatMemberModel.IdChat;
         modelCreate.IdUser = ChatMemberModel.IdUser;
         modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+         if (modelCreate.User==null)
+            throw new Exception("not found id User");
         modelCreate.Chat = ChatsRepository.GetAll(x => x.Id == modelCreate.IdChat).FirstOrDefault();
+         if (modelCreate.Chat==null)
+            throw new Exception("not found id Chat");
         modelCreate.Chat.ChatMembers.Add(modelCreate);
         modelCreate.User.ChatMembers.Add(modelCreate);
         ChatMembersRepository.Save(mapper.Map<ChatMember>(modelCreate));
 
-        return modelCreate;
+        return ChatMemberModel;
     }
 }

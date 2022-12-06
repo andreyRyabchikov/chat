@@ -67,7 +67,7 @@ public class BlackListService : IBlackListService
         existingBlackList = BlackListsRepository.Save(existingBlackList);
         return mapper.Map<BlackListModel>(existingBlackList);
     }
-    BlackList IBlackListService.AddBlackList(BlackListModel BlackListModel)
+    public BlackListModel AddBlackList(BlackListModel BlackListModel)
     {
         if (BlackListsRepository.GetAll(x => x.Id == BlackListModel.Id).FirstOrDefault()!=null)
             throw new Exception("create not uniqe subject");
@@ -79,10 +79,14 @@ public class BlackListService : IBlackListService
         modelCreate.IdUser = BlackListModel.IdUser;
         modelCreate.IdUserBlocked = BlackListModel.IdUserBlocked;
         modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+         if (modelCreate.User==null)
+            throw new Exception("not found id User");
         modelCreate.UserBlocked = usersRepository.GetAll(x => x.Id == modelCreate.IdUserBlocked).FirstOrDefault();
+         if (modelCreate.UserBlocked==null)
+            throw new Exception("not found id UserBlocked");
         modelCreate.User.ThemBanned.Add(modelCreate);
         modelCreate.UserBlocked.ThatBanned.Add(modelCreate);
         BlackListsRepository.Save(mapper.Map<BlackList>(modelCreate));
-        return modelCreate;
+        return BlackListModel;
     }
 }

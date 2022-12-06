@@ -67,7 +67,7 @@ public class ContactService : IContactService
         existingContact = ContactsRepository.Save(existingContact);
         return mapper.Map<ContactModel>(existingContact);
     }
-     Contact IContactService.AddContact(ContactModel ContactModel)
+     public ContactModel AddContact(ContactModel ContactModel)
     {
         if (ContactsRepository.GetAll(x => x.Id == ContactModel.Id).FirstOrDefault()!=null)
             throw new Exception("create not uniqe subject");
@@ -80,10 +80,14 @@ public class ContactService : IContactService
         modelCreate.IdUser = ContactModel.IdUser;
         modelCreate.IdUserContact = ContactModel.IdUserContact;
         modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+         if (modelCreate.User==null)
+            throw new Exception("not found id User");
         modelCreate.UserContact = usersRepository.GetAll(x => x.Id == modelCreate.IdUserContact).FirstOrDefault();
+         if (modelCreate.UserContact==null)
+            throw new Exception("not found id UserContact");
         modelCreate.User.ThatContacts.Add(modelCreate);
         modelCreate.UserContact.ThemContacts.Add(modelCreate);
         ContactsRepository.Save(mapper.Map<Contact>(modelCreate));
-        return modelCreate;
+        return ContactModel;
     }
 }

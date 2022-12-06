@@ -12,5 +12,5 @@ public interface IAttachmentService
     void DeleteAttachment(Guid id);
 
     PageModel<AttachmentPreviewModel> GetAttachments(int limit = 20, int offset = 0);
-    Attachment AddAttachment(AttachmentModel AttachmentModel);
+    AttachmentModel AddAttachment(AttachmentModel AttachmentModel);
 }

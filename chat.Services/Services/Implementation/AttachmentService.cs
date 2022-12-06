@@ -67,7 +67,7 @@ public class AttachmentService : IAttachmentService
         existingAttachment = AttachmentsRepository.Save(existingAttachment);
         return mapper.Map<AttachmentModel>(existingAttachment);
     }
-    Attachment IAttachmentService.AddAttachment(AttachmentModel AttachmentModel)
+    public AttachmentModel AddAttachment(AttachmentModel AttachmentModel)
     {
         if (AttachmentsRepository.GetAll(x => x.Id == AttachmentModel.Id).FirstOrDefault()!=null)
             throw new Exception("create not uniqe subject");
@@ -79,9 +79,11 @@ public class AttachmentService : IAttachmentService
         modelCreate.Name=AttachmentModel.Name;
         modelCreate.Type=AttachmentModel.Type;
         var Message = MessagesRepository.GetAll(x => x.Id == modelCreate.IdMessage).FirstOrDefault();
+         if (Message==null)
+            throw new Exception("not found id Message");
         modelCreate.Message=Message;
         Message.Attachments.Add(modelCreate);
         AttachmentsRepository.Save(mapper.Map<Attachment>(modelCreate));
-        return modelCreate;
+        return AttachmentModel;
     }
 }

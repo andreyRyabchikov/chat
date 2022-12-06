@@ -69,7 +69,7 @@ public class MessageService : IMessageService
         existingMessage = MessagesRepository.Save(existingMessage);
         return mapper.Map<MessageModel>(existingMessage);
     }
-     Message IMessageService.AddMessage(MessageModel MessageModel)
+     public MessageModel AddMessage(MessageModel MessageModel)
     {
         if (MessagesRepository.GetAll(x => x.Id == MessageModel.Id).FirstOrDefault()!=null)
             throw new Exception("create not uniqe subject");
@@ -80,11 +80,15 @@ public class MessageService : IMessageService
         modelCreate.IdChat = MessageModel.IdChat;
         modelCreate.IdUser = MessageModel.IdUser;
         modelCreate.User = usersRepository.GetAll(x => x.Id == modelCreate.IdUser).FirstOrDefault();
+         if (modelCreate.User==null)
+            throw new Exception("not found id User");
         modelCreate.Chat = ChatsRepository.GetAll(x => x.Id == modelCreate.IdChat).FirstOrDefault();
+         if (modelCreate.Chat==null)
+            throw new Exception("not found id Chat");
         modelCreate.Chat.Messages.Add(modelCreate);
         modelCreate.User.Messages.Add(modelCreate);
         MessagesRepository.Save(mapper.Map<Message>(modelCreate));
 
-        return modelCreate;
+        return MessageModel;
     }
 }

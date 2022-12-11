@@ -19,5 +19,6 @@ public static partial class ServicesExtensions
         services.AddScoped<IChatMemberService, ChatMemberService>();
         services.AddScoped<IContactService, ContactService>();
         services.AddScoped<IBlackListService, BlackListService>();
+        services.AddScoped<IAuthService, AuthService>();
     }
 }

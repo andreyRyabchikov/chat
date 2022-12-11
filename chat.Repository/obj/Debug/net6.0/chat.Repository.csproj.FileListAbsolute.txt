@@ -13,3 +13,5 @@ G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.dll
 G:\chat\chat.Repository\obj\Debug\net6.0\refint\chat.Repository.dll
 G:\chat\chat.Repository\obj\Debug\net6.0\chat.Repository.pdb
 G:\chat\chat.Repository\obj\Debug\net6.0\ref\chat.Repository.dll
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Shared.dll
+G:\chat\chat.Repository\bin\Debug\net6.0\chat.Shared.pdb

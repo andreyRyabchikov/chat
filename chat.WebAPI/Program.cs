@@ -1,38 +1,42 @@
 using chat.Repository;
+using chat.Services;
 using chat.WebAPI.AppConfiguration.ApplicationExtensions;
 using chat.WebAPI.AppConfiguration.ServicesExtensions;
-using chat.Services;
 using Serilog;
-
+using chat.WebAPI.AppConfiguration.Middlewares;
+using Chat.WebAPI.AppConfiguration;
 
 var configuration = new ConfigurationBuilder()
 .AddJsonFile("appsettings.json", optional: false)
-.Build();  
+.Build();
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddSerilogConfiguration(); //Add serilog
+
+builder.AddSerilogConfiguration();
 builder.Services.AddDbContextConfiguration(configuration);
-builder.Services.AddVersioningConfiguration(); //add api versioning
-builder.Services.AddMapperConfiguration();
-builder.Services.AddControllers(); //1
-builder.Services.AddSwaggerConfiguration();
-builder.Services.AddRepositoryConfiguration();
-builder.Services.AddBusinessLogicConfiguration();
-
-
+builder.Services.AddVersioningConfiguration();
+builder.Services.AddMapperConfiguration(); //presentation profile mapper
+builder.Services.AddControllers();
+builder.Services.AddSwaggerConfiguration(configuration);
+builder.Services.AddRepositoryConfiguration(); // DI for repository layer
+builder.Services.AddBusinessLogicConfiguration(); //DI for services layer
+builder.Services.AddAuthorizationConfiguration(configuration); //1
 
 var app = builder.Build();
 
-app.UseSerilogConfiguration(); //use serilog
+await RepositoryInitializer.InitializeRepository(app);  
+
+app.UseSerilogConfiguration();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwaggerConfiguration(); //use swagger
+    app.UseSwaggerConfiguration();
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
+app.UseAuthorizationConfiguration(); //2
+app.UseMiddleware(typeof(ExceptionsMiddleware));
 app.MapControllers();
 
 try

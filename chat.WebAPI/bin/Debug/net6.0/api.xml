@@ -15,6 +15,12 @@
             </summary>
             <param name="builder"></param>
         </member>
+        <member name="M:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddAuthorizationConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add serilog configuration
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="M:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddDbContextConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Add serilog configuration
@@ -27,7 +33,7 @@
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="M:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:chat.WebAPI.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Add swagger settings
             </summary>
@@ -43,6 +49,12 @@
             <summary>
             Application builder extensions
             </summary>
+        </member>
+        <member name="M:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseAuthorizationConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use serilog configuration
+            </summary>
+            <param name="app"></param>
         </member>
         <member name="M:chat.WebAPI.AppConfiguration.ApplicationExtensions.AppExtensions.UseSerilogConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
@@ -272,11 +284,15 @@
             Get user
             </summary>
         </member>
-        <member name="M:chat.WebAPI.Controllers.UsersController.AddUser(chat.Services.Models.UserModel)">
+        <member name="T:chat.WebApi.Controllers.AuthController">
             <summary>
-            Add User
+            Auth endpoints
             </summary>
-            <returns></returns>
+        </member>
+        <member name="M:chat.WebApi.Controllers.AuthController.#ctor(chat.Services.Abstract.IAuthService,AutoMapper.IMapper)">
+            <summary>
+            Auth controller
+            </summary>
         </member>
     </members>
 </doc>

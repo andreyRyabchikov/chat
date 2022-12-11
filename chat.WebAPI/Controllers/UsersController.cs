@@ -2,6 +2,7 @@ using AutoMapper;
 using chat.Services.Abstract;
 using chat.Services.Models;
 using chat.WebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace chat.WebAPI.Controllers
@@ -27,22 +28,26 @@ namespace chat.WebAPI.Controllers
             this.mapper = mapper;
         }
 
-        /// <summary>
+       /// <summary>
         /// Get users by pages
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("")] // /users?limit=20&offset=0
         public IActionResult GetUsers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
             var pageModel = userService.GetUsers(limit, offset);
-            return Ok(mapper.Map<PageResponse<UserResponse>>(pageModel));
-        }
 
-        /// <summary>
+            var response = mapper.Map<PageResponse<UserPreviewResponse>>(pageModel);
+
+            return Ok(response); // code 200 + body
+        }
+          /// <summary>
         /// Update user
         /// </summary>
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id}")] // http://localhost/api/v1/users/id
+        [Authorize]
         public IActionResult UpdateUser([FromRoute] Guid id, [FromBody] UpdateUserRequest model)
         {
             var validationResult = model.Validate();
@@ -56,9 +61,9 @@ namespace chat.WebAPI.Controllers
 
                 return Ok(mapper.Map<UserResponse>(resultModel));
             }
-            catch (Exception ex)
+            catch (Exception ex) // todo ServiceException ex 400
             {
-                return BadRequest(ex.ToString());
+                return BadRequest(ex.ToString()); //400 
             }
         }
 
@@ -97,15 +102,6 @@ namespace chat.WebAPI.Controllers
                 return BadRequest(ex.ToString());
             }
         }
-        /// <summary>
-        /// Add User
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult AddUser([FromBody] UserModel User)
-        {
-            var response = userService.AddUser(User);
-            return Ok(response);
-        }
     }
+
 }

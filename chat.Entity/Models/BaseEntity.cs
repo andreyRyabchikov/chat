@@ -1,5 +1,6 @@
 namespace chat.Entity.Models;
-public abstract class BaseEntity
+
+public abstract class BaseEntity : IBaseEntity
 {
     public Guid Id { get; set; }
     public DateTime CreationTime { get; set; }
